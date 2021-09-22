@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500;700&display=swap');
+
+:root{
+    --bg-dark:#000;
+    --bg-light:#fff;
+
+    --fg-dark:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23464646' fill-opacity='0.4'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    --fg-light:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23c6c4c4' fill-opacity='0.4'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    
+    --bg-neutral-300:#dedede;
+
+    --clr-primary-dark:#7e45fa;
+    --clr-primary-light:#ff6a49;
+
+    --ff: 'Josefin Sans', sans-serif;
+
+    --fs-500:1.75rem;
+    --fs-700:5rem;
+
+    --fw-500:500;
+    --fw-700:700;
+}
+
+@media(min-width:48.125rem){
+    :root{
+        --fs-500:2rem;
+        --fs-700:7rem;
+    }
+}
+
+*,
+*::before,
+*::after{
+    box-sizing:border-box;
+}
+
+body,
+h1{
+    margin:0;
+}
+
+label{
+    display:block;
+}
+
+button{
+    font:inherit;
+}
+
+body{
+    font-family:var(--ff);
+    font-size:var(--fs-500);
+    font-weight:var(--fw-500);
+    background-color: var(--bg-light);
+    background-image: var(--fg-light);
+    color:var(--clr-primary-light);
+    height:100vh;
+}
+
+h1{
+    font-size:var(--fs-700);
+    text-transform: uppercase;
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:100%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+}
+
+.container{
+    max-width:75rem;
+    margin:0 auto;
+}
+
+/* Components */
+
+header{
+    padding:1em;
+}
+
+.row{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+header .use-speech{
+    --bg:var(--clr-primary-light);
+    --fg:var(--bg-light);
+    background:none;
+    border:none;
+    color:inherit;
+    cursor:pointer;
+    margin:0 0 2.25em 0;
+    position:relative;
+}
+
+header .use-speech::before,
+header .use-speech::after{
+    --scale:0;
+    transition:transform 0.15s;
+}
+
+header .use-speech::before{
+    content:'Change the mode with your voice';
+    position:absolute;
+    top:4.5rem;
+    transform:translateY(-50%) scale(var(--scale));
+    font-size:1rem;
+    padding:0.5em;
+    border-radius:0.5rem;
+    background-color: var(--bg);
+    color:var(--fg);
+    transform-origin:top center;
+}
+
+header .use-speech::after{
+    content:'';
+    position:absolute;
+    top:1.25rem;
+    left:55%;
+    transform:translateX(-50%) scale(var(--scale));
+    border:15px solid transparent;
+    border-bottom-color:var(--bg);
+    transform-origin:bottom center;
+}
+
+header .use-speech:hover::before,
+header .use-speech:hover::after{
+    --scale:1;
+}
+
+header label{
+    width:80px;
+    border-radius:30px;
+    background:var(--bg-neutral-300);
+    box-shadow:0 0 5px 0 rgba(0,0,0,0.15);
+}
+
+header input{
+    display:none;
+}
+
+header .slider{
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:var(--clr-primary-light);
+    transition:0.4s;
+}
+
+header input:checked ~ .slider{
+    transform:translateX(45px);
+    background:var(--bg-neutral-300);
+}
+
+@media(min-width:35rem){
+    .row{
+        flex-direction:row;
+        align-items:flex-start;
+        justify-content:flex-end;
+    }
+
+    header .use-speech{
+        margin:0 2.25em 0 0;
+    }
+}
